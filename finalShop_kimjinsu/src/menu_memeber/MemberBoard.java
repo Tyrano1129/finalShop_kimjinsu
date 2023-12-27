@@ -1,13 +1,13 @@
 package menu_memeber;
 
 import _mall.MenuCommand;
+import controller.MallController;
 
 public class MemberBoard implements MenuCommand {
-
+	private MallController cont;
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
-		
+		cont = MallController.getInstance();
 	}
 
 	@Override

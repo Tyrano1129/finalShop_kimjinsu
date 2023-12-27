@@ -45,7 +45,7 @@ public class Item {
 	}
 	@Override
 	public String toString() {
-		return "%d %s %s %d".formatted(this.itemNum,this.categoryName,this.itemName,this.price);
+		return "%s %d".formatted(this.itemName,this.price);
 	}
 	
 	

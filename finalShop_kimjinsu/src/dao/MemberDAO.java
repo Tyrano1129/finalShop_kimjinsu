@@ -39,6 +39,23 @@ public class MemberDAO {
 		
 		memberList.stream().forEach(System.out::println);
 	}
+	// 회원 전체출력
+	public void memberPrint() {
+		List<Member> temp = new ArrayList<>();
+		temp.addAll(memberList);
+		temp.stream().forEach(System.out::println);
+	}
+	//아이디 인덱스 찾기
+	public int getMemberIdIndex(String id) {
+		List<Member> temp = new ArrayList<>();
+		temp.addAll(memberList);
+		for(int i =0; i < temp.size(); i+=1) {
+			if(id.equals(temp.get(i).getId())) {
+				return i;
+			}
+		}
+		return -1;
+	}
 	//아이디 중복체크
 	public String getMemberById(String id) {
 		List<Member> temp = new ArrayList<>();
@@ -68,6 +85,25 @@ public class MemberDAO {
 		memberList.stream().forEach(System.out::println);
 		return true;
 	}
+	// 본인 회원탈퇴
+	public void delectMember(String id,CartDAO cart) {
+		for(int i = 0; i < memberList.size(); i+=1) {
+			if(memberList.get(i).getId().equals(id)) {
+				memberList.remove(i);
+				break;
+			}
+		}
+		cart.cartOneMemberDelete(id);
+	}
+	// admin 삭제
+	public void deleteMember(int idx) {
+		if(memberList.get(idx).getId().equals("admin")) {
+			System.out.println("관리자는 지울수없습니다.");
+			return;
+		}
+		memberList.remove(idx);
+	}
+	
 	//세이브
 	public String dataSave() {
 		String data = "";
@@ -76,4 +112,6 @@ public class MemberDAO {
 		}
 		return data;
 	}
+	
+	
 }

@@ -1,18 +1,26 @@
 package menu_memeber;
 
 import _mall.MenuCommand;
+import controller.MallController;
+import dao.CartDAO;
+import dao.ItemDAO;
 
 public class MemberCart implements MenuCommand {
 
+	private MallController cont;
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
-		
+		cont = MallController.getInstance();
 	}
 
 	@Override
 	public boolean update() {
-		// TODO Auto-generated method stub
+		CartDAO cartdao = CartDAO.getInstance();
+		ItemDAO itemdao = ItemDAO.getInstance();
+		if(cartdao.cartMemberOnePrint(itemdao,cont.getLoginId()) == 0) {
+			System.out.println("구매하신 내역이 없습니다.");
+		}
+		cont.setNext("MemberMain");
 		return false;
 	}
 

@@ -61,7 +61,7 @@ public class Board {
 	}
 	@Override
 	public String toString() {
-		return "%d %s %s %s %s %d".formatted(this.boradNum,this.title,this.contents,this.id,this.date,this.hits);
+		return "[제목 : %s \t작성자 : %s 날짜 : %s 조회수 : %d".formatted(this.title,this.id,this.date,this.hits);
 	}
 	
 }

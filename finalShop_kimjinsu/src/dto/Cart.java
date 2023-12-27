@@ -46,7 +46,7 @@ public class Cart {
 	}
 	@Override
 	public String toString() {
-		return "%d %s %d %d".formatted(this.cartNum,this.id,this.itemCnt,this.itemNum);
+		return "%d %s %d %d".formatted(this.cartNum,this.id,this.itemNum,this.itemCnt);
 	}
 	
 }
