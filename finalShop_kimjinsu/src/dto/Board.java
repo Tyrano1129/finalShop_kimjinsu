@@ -1,5 +1,7 @@
 package dto;
 
+import java.util.Objects;
+
 public class Board {
 	private static int num;
 	private int boradNum;
@@ -62,6 +64,23 @@ public class Board {
 	@Override
 	public String toString() {
 		return "[제목 : %s \t작성자 : %s 날짜 : %s 조회수 : %d".formatted(this.title,this.id,this.date,this.hits);
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(boradNum, contents, date, hits, id, title);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Board other = (Board) obj;
+		return boradNum == other.boradNum && Objects.equals(contents, other.contents)
+				&& Objects.equals(date, other.date) && hits == other.hits && Objects.equals(id, other.id)
+				&& Objects.equals(title, other.title);
 	}
 	
 }

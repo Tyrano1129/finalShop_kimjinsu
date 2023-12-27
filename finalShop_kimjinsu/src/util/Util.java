@@ -27,6 +27,6 @@ public class Util {
 	}
 	public static String getValueString(String msg) {
 		System.out.println(msg);
-		return scan.next();
+		return scan.nextLine();
 	}
 }

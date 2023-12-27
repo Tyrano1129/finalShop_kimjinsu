@@ -85,6 +85,11 @@ public class MemberDAO {
 		memberList.stream().forEach(System.out::println);
 		return true;
 	}
+	// 비밀번호 수정
+	public void memberOnePwSet(String id,String pw) {
+		int idx = getMemberIdIndex(id);
+		memberList.get(idx).setPw(pw);
+	}
 	// 본인 회원탈퇴
 	public void delectMember(String id,CartDAO cart) {
 		for(int i = 0; i < memberList.size(); i+=1) {

@@ -1,13 +1,17 @@
 package dao;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import dto.*;
 
 public class BoardDAO {
 	private List<Board> boardList;
 	private static BoardDAO instance = new BoardDAO();
-
+	private	LocalDateTime now = LocalDateTime.now();
 	public static BoardDAO getInstance() {
 		return instance;
 	}
@@ -19,7 +23,33 @@ public class BoardDAO {
 	}
 	// 게시글 보기
 	public String boardContents(int idx) {
+		boardList.get(idx).setHits(boardList.get(idx).getHits() + 1);
 		return boardList.get(idx).getContents();
+	}
+	// 자신 게시글 삭제
+	public void boardMemberOneDelete(Board board) {
+		boardList.remove(board);
+	}
+	//게시글 가지고오기
+	public List<Board> memberOneboardPrint(String id) {
+		List<Board> temp = new ArrayList<>();
+		temp = boardList.stream()
+						.filter(board -> board.getId().equals(id))
+						.collect(Collectors.toList());
+		for(Board board : temp) {
+			System.out.println(board);
+			System.out.println(board.getContents());
+			System.out.println("-----------------");
+		}
+		
+		return temp;
+	}
+	// 게시글 추가
+	public void boardMemberOneInsert(String id,String title,String contents) {
+		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		String date = now.format(formatter1);
+		Board.setNum(Board.getNum()+1);
+		boardList.add(new Board(Board.getNum(),title,id,date,contents,1));
 	}
 	// 게시글 삭제
 	public void boardDelete(int idx) {
