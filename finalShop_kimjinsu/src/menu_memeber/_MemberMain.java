@@ -16,8 +16,6 @@ public class _MemberMain implements MenuCommand {
 
 	@Override
 	public boolean update() {
-		MemberDAO memberdao = MemberDAO.getInstance();
-		CartDAO cartdao = CartDAO.getInstance();
 		System.out.println("---------------[ 회원 " + cont.getLoginId() + "님 ]--------------");
 		System.out.println("[1] 상품구매");
 		System.out.println("[2] 구매내역");
