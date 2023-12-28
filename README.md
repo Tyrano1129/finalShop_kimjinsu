@@ -1,7 +1,7 @@
-파일 _main 실행
+_main 실행
 ===
 
-controller
+* 녹색 controller
 ===
 ###### MallController - 실행시 초기값 설정 및 Map 을 사용하여 여러메뉴들을 사용하기위한 공간
 
