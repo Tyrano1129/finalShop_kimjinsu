@@ -101,12 +101,13 @@ public class MemberDAO {
 		cart.cartOneMemberDelete(id);
 	}
 	// admin 삭제
-	public void deleteMember(int idx) {
+	public void deleteMember(int idx,CartDAO cart) {
 		if(memberList.get(idx).getId().equals("admin")) {
 			System.out.println("관리자는 지울수없습니다.");
 			return;
 		}
 		memberList.remove(idx);
+		cart.cartOneMemberDelete(memberList.get(idx).getId());
 	}
 	
 	//세이브

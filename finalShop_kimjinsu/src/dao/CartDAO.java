@@ -72,8 +72,10 @@ public class CartDAO {
 		for(int i = 0; i < temp.size(); i+=1) {
 			if(id.equals(temp.get(i).getId())) {
 				temp.remove(i);
+				i-=1;
 			}
 		}
+		cartList = new LinkedList<>();
 		cartList.addAll(temp);
 	}
 	//로드

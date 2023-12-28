@@ -20,6 +20,7 @@ public class AdminItem implements MenuCommand {
 		while(true) {
 			ItemDAO itemdao = ItemDAO.getInstance();
 			CartDAO cartdao = CartDAO.getInstance();
+			itemdao.printItemNumber();
 			System.out.println("[1] 아이템 추가");
 			System.out.println("[2] 아이템 삭제");
 			System.out.println("[3] 총 매출 아이템 갯수 출력(판매력 높은순으로)");
@@ -27,7 +28,6 @@ public class AdminItem implements MenuCommand {
 			System.out.println("[0] 종료");
 			System.out.println("[카테고리 별 순서]");
 			int sel = Util.getValue("메뉴선택 : ", 0, 4);
-			itemdao.printItemNumber();
 			if (sel == 1) {
 				String itemName = Util.getValueString("아이템 입력 : ");
 				if(itemdao.isValueItem(itemName)) {

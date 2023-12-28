@@ -40,10 +40,12 @@ public class _MemberMain implements MenuCommand {
 			cont.setNext("MemberInfo");
 			System.out.println("나의 정보");
 		} else if (sel == 5) {
-			memberdao.delectMember(cont.getLoginId(), cartdao);
+			cont.setNext("MemberQuit");
+			System.out.println("회원탈퇴");
 		} else if (sel == 6) {
 			cont.setNext("MallMain");
 			cont.setLoginId(null);
+			System.out.println("로그아웃...");
 		} else if (sel == 0) {
 			System.out.println("종료...");
 			cont.setNext(null);

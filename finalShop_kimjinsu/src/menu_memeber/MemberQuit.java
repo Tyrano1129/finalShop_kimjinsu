@@ -1,18 +1,25 @@
 package menu_memeber;
 
 import _mall.MenuCommand;
+import controller.MallController;
+import dao.CartDAO;
+import dao.MemberDAO;
 
 public class MemberQuit implements MenuCommand {
 
+	private MallController cont;
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
-		
+		cont = MallController.getInstance();
 	}
 
 	@Override
 	public boolean update() {
-		// TODO Auto-generated method stub
+		MemberDAO dao = MemberDAO.getInstance();
+		CartDAO cartdao = CartDAO.getInstance();
+		dao.delectMember(cont.getLoginId(), cartdao);
+		cont.setLoginId(null);
+		cont.setNext("MallMain");
 		return false;
 	}
 
