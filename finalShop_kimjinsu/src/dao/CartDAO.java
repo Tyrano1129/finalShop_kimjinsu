@@ -38,6 +38,7 @@ public class CartDAO {
 	//회원 카트 구입
 	public void insertCart(String id,int itemNum,int cnt) {
 		boolean check = true;
+		System.out.println(id + " " + cnt + " " + itemNum);
 		for(int i = 0; i < cartList.size(); i+=1) {
 			if(cartList.get(i).getItemNum() == itemNum && cartList.get(i).getId().equals(id)) {
 				cartList.get(i).setItemCnt(cartList.get(i).getItemCnt() + cnt);
@@ -60,23 +61,33 @@ public class CartDAO {
 		for(Cart cart : cartList) {
 			if(item.getItemNum() == cart.getItemNum()) {
 				sum += cart.getItemCnt();
+				System.out.println(cart.getCartNum());
 			}
 		}
 		return sum;
 	}
 	// 맴버 탈퇴후 카트 다지우기
 	public void cartOneMemberDelete(String id) {
-		List<Cart> temp = new ArrayList<>();
-		temp.addAll(cartList);
-		
-		for(int i = 0; i < temp.size(); i+=1) {
-			if(id.equals(temp.get(i).getId())) {
-				temp.remove(i);
+		for(int i = 0; i < cartList.size(); i+=1) {
+			if(id.equals(cartList.get(i).getId())) {
+				cartList.remove(i);
 				i-=1;
 			}
 		}
-		cartList = new LinkedList<>();
-		cartList.addAll(temp);
+		cartList.stream()
+		.forEach(System.out::println);
+	}
+	// item 삭제후 카트에있는모든것 지우기
+	public void cartItemOneDelete(int num) {
+		System.out.println(num);
+		for(int i = 0; i < cartList.size(); i+=1) {
+			if(num == cartList.get(i).getItemNum()) {
+				cartList.remove(i);
+				i-=1;
+			}
+		}
+		cartList.stream()
+		.forEach(System.out::println);
 	}
 	//로드
 	public void init(String data) {

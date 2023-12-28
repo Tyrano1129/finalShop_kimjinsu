@@ -74,19 +74,17 @@ public class ItemDAO {
 	// 카테고리순 출력
 	public void printItemNumber() {
 		List<Item> temp = new ArrayList<>();
-		temp = itemList.stream()
-				.sorted((item1,item2)->{
-					if(item1.getCategoryName().compareTo(item2.getCategoryName()) > 0) {
-						return 1;
-					}else if(item1.getCategoryName().compareTo(item2.getCategoryName()) < 0){
-						return -1;
-					}
-					return 0;
-				})
-				.collect(Collectors.toList());
-		for(Item item : temp) {
-			System.out.println(item);
-		}
+		temp.addAll(itemList);
+		temp.stream()
+			.sorted((item1,item2)->{
+				if(item1.getCategoryName().compareTo(item2.getCategoryName()) > 0) {
+					return 1;
+				}else if(item1.getCategoryName().compareTo(item2.getCategoryName()) < 0){
+					return -1;
+				}
+				return 0;
+			})
+			.forEach(System.out::println);
 		System.out.println("====================");
 	}
 	// 아이템&&카테고리 중복값 체크
@@ -111,6 +109,7 @@ public class ItemDAO {
 	}
 	//삭제
 	public void itemDelete(int idx,CartDAO cart) {
+		cart.cartItemOneDelete(itemList.get(idx).getItemNum());
 		itemList.remove(idx);
 	}
 	//카테고리 출력
